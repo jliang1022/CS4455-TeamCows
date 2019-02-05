@@ -698,6 +698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -5
   moveSpeed: 10
+  rollSpeed: 15
 --- !u!65 &1990519852
 BoxCollider:
   m_ObjectHideFlags: 0

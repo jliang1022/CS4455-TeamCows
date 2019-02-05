@@ -22,19 +22,50 @@ public class Controller3D : RaycastController
 
 		//if (velocity.y < 0)
 			//DescendSlope (ref velocity);
-		
-		if (Mathf.Abs(velocity.x) > 0.001)
-			collisions.faceDir = (int) Mathf.Sign (velocity.x);
 
 		HorizontalXCollision (ref velocity);
         HorizontalZCollision (ref velocity);
 		if (Mathf.Abs(velocity.y) > 0.001)
 			VerticalCollisions (ref velocity);
 
-		transform.Translate (velocity);
+        SetFaceDir(velocity);
+
+        transform.Translate (velocity);
 	}
 
-	void VerticalCollisions(ref Vector3 velocity)
+    void SetFaceDir(Vector3 velocity)
+    {
+        // 0 is 12 o' clock
+        if (Mathf.Abs(velocity.z) > 0.001)
+        {
+            if (Mathf.Abs(velocity.x) > 0.001)
+                collisions.faceDir = 1;
+            else if (Mathf.Abs(velocity.x) < -0.001)
+                collisions.faceDir = 7;
+            else
+                collisions.faceDir = 0;
+        }
+        else if (Mathf.Abs(velocity.z) < -0.001)
+        {
+            if (Mathf.Abs(velocity.x) > 0.001)
+                collisions.faceDir = 3;
+            else if (Mathf.Abs(velocity.x) < -0.001)
+                collisions.faceDir = 5;
+            else
+                collisions.faceDir = 4;
+        }
+        else
+        {
+            if (Mathf.Abs(velocity.x) > 0.001)
+                collisions.faceDir = 2;
+            else if (Mathf.Abs(velocity.x) < -0.001)
+                collisions.faceDir = 6;
+        }
+        Debug.Log(velocity);
+        Debug.Log(collisions.faceDir);
+    }
+
+    void VerticalCollisions(ref Vector3 velocity)
 	{
 		float directionY = Mathf.Sign (velocity.y);
 		float rayLength = Mathf.Abs (velocity.y) + skinWidth;
@@ -239,6 +270,7 @@ public class Controller3D : RaycastController
 			above = below = left = right = front = back = climbingSlope = descendingSlope = false;
 			slopeAnglePrev = slopeAngle;
 			slopeAngle = 0;
+            faceDir = 4;
 		}
 	}
 }
