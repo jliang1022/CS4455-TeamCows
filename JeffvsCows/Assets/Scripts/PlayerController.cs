@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
         velocity.x = targetVelocityX;
         //velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
+        velocity.z = input.y * moveSpeed;
+
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
