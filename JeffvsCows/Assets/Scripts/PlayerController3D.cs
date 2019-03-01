@@ -39,13 +39,13 @@ public class PlayerController3D : MonoBehaviour
     void UpdateFaceDir()
     {
         Vector3 faceDirVec = new Vector3();
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             faceDirVec += new Vector3(-1, 0, 0);
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             faceDirVec += new Vector3(1, 0, 0);
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             faceDirVec += new Vector3(0, 0, 1);
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             faceDirVec += new Vector3(0, 0, -1);
 
         Vector3 newDir = Vector3.RotateTowards(transform.forward, faceDirVec, turnSpeed * Time.deltaTime, 0f);
