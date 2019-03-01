@@ -61,9 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Controller3D.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\RaycastController.cs" />
+    <Compile Include="Assets\Scripts\old\Controller3D.cs" />
+    <Compile Include="Assets\Scripts\old\CowController.cs" />
+    <Compile Include="Assets\Scripts\old\FOVController.cs" />
+    <Compile Include="Assets\Scripts\old\PlayerAnimatorController.cs" />
+    <Compile Include="Assets\Scripts\old\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\old\RaycastController.cs" />
+    <Compile Include="Assets\Scripts\old\Rotate.cs" />
+    <Compile Include="Assets\Scripts\PlayerController3D.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/arthurshim/Documents/GeorgiaTech/CS4455/CS4455-TeamCows/JeffvsCows/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
