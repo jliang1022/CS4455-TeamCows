@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\old\RaycastController.cs" />
     <Compile Include="Assets\Scripts\old\Rotate.cs" />
     <Compile Include="Assets\Scripts\PlayerController3D.cs" />
+    <None Include="Assets\Shaders\ReflectiveDiffuseSpecTransp.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/calebrudnicki/Desktop/Cows/CS4455-TeamCows/JeffvsCows/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
