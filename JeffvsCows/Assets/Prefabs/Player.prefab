@@ -335,7 +335,6 @@ Transform:
   m_Children:
   - {fileID: 9027991294386631272}
   - {fileID: 8342966317932342283}
-  - {fileID: 8342966316964832644}
   - {fileID: 8342966317614962379}
   - {fileID: 2248549142977439693}
   m_Father: {fileID: 8342966317948051790}
@@ -513,7 +512,7 @@ Transform:
   - {fileID: 6975920363258037962}
   - {fileID: 4445571825767979013}
   m_Father: {fileID: 376826138987834269}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7587668392318685333
 GameObject:
@@ -1245,14 +1244,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8342966316964832643}
-  m_LocalRotation: {x: -0.044927023, y: -0, z: -0, w: 0.9989903}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8342966317486159323}
   - {fileID: 8342966318526052703}
-  m_Father: {fileID: 376826138987834269}
-  m_RootOrder: 2
+  m_Father: {fileID: 8342966317932342283}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8342966316982218876
 GameObject:
@@ -2559,7 +2558,7 @@ Transform:
   m_Children:
   - {fileID: 9197655621834702365}
   m_Father: {fileID: 376826138987834269}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8342966317614962382
 MeshFilter:
@@ -3388,6 +3387,7 @@ Transform:
   - {fileID: 8342966318081809860}
   - {fileID: 8342966317136083166}
   - {fileID: 8342966318236644753}
+  - {fileID: 8342966316964832644}
   m_Father: {fileID: 376826138987834269}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -5.15, y: 0, z: 0}
@@ -3476,7 +3476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8342966317948051789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.225, y: 1.042, z: 0.093}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 376826138987834269}
@@ -3512,6 +3512,8 @@ MonoBehaviour:
   moveSpeed: 10
   turnSpeed: 12
   gravityScale: 1
+  dashTime: 1
+  dashSpeed: 1
   moveDirection: {x: 0, y: 0, z: 0}
 --- !u!143 &5969809720204511068
 CharacterController:
@@ -4606,7 +4608,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.01185208, z: -0.16236232}
+  m_ConnectedAnchor: {x: 0, y: 0.011851938, z: -0.16236189}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
