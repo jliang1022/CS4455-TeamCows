@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerController3D : MonoBehaviour
 {
-    public float moveSpeed, turnSpeed, gravityScale = 1f;
+    public float moveSpeed, turnSpeed, gravityScale = 1f, dashTime = 1f, dashSpeed = 1f;
     public Vector3 moveDirection;
+    float dashTimeLeft;
     CharacterController characterController;
     Direction faceDir;
     Animator anim;
@@ -27,6 +28,20 @@ public class PlayerController3D : MonoBehaviour
 
         UpdateFaceDir();
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dashTimeLeft <= 0.001)
+            {
+                dashTimeLeft = dashTime;
+            }
+        }
+
+        if (dashTimeLeft > 0)
+        {
+            velocity = transform.forward * dashSpeed;
+            dashTimeLeft -= Time.deltaTime;
+        }
+
         characterController.Move(velocity * Time.deltaTime);
         UpdateAnimation();
     }
@@ -34,6 +49,7 @@ public class PlayerController3D : MonoBehaviour
     void UpdateAnimation()
     {
         anim.SetBool("Moving", Mathf.Abs(moveDirection.x) > 0.01 || Mathf.Abs(moveDirection.z) > 0.01);
+        anim.SetBool("Rolling", dashTimeLeft > 0);
     }
 
     void UpdateFaceDir()
