@@ -86,9 +86,9 @@
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\guiTextSet.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CowController3D.cs" />
+    <Compile Include="Assets\Scripts\FOVController.cs" />
     <Compile Include="Assets\Scripts\old\Controller3D.cs" />
     <Compile Include="Assets\Scripts\old\CowController.cs" />
-    <Compile Include="Assets\Scripts\old\FOVController.cs" />
     <Compile Include="Assets\Scripts\old\PlayerAnimatorController.cs" />
     <Compile Include="Assets\Scripts\old\PlayerController.cs" />
     <Compile Include="Assets\Scripts\old\RaycastController.cs" />

@@ -23,7 +23,7 @@ public class PlayerController3D : MonoBehaviour
     void Update()
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        velocity = moveDirection * moveSpeed;
+        velocity = moveDirection.normalized * moveSpeed;
         velocity.y += Physics.gravity.y * gravityScale;
 
         UpdateFaceDir();
