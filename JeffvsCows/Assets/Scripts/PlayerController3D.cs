@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController3D : MonoBehaviour
 {
     public float moveSpeed, turnSpeed, gravityScale = 1f, dashTime = 1f, dashSpeed = 1f;
-    public Vector3 moveDirection;
+    public Vector3 moveDirection, velocity;
     float dashTimeLeft;
     CharacterController characterController;
     Direction faceDir;
@@ -23,12 +23,12 @@ public class PlayerController3D : MonoBehaviour
     void Update()
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        Vector3 velocity = moveDirection * moveSpeed;
+        velocity = moveDirection * moveSpeed;
         velocity.y += Physics.gravity.y * gravityScale;
 
         UpdateFaceDir();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             if (dashTimeLeft <= 0.001)
             {
@@ -85,4 +85,8 @@ public class PlayerController3D : MonoBehaviour
             faceDir = Direction.West;
     }
 
+    public Vector3 GetVelocity()
+    {
+        return velocity;
+    }
 }
