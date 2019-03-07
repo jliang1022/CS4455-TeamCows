@@ -16,7 +16,8 @@ public class CowController3D : MonoBehaviour
     NavMeshAgent nmAgent;
     Animator anim;
     CowState state;
-    GameObject player;
+    public GameObject player; 
+    GameObject fov;
 
     public enum CowType
     {
@@ -32,6 +33,8 @@ public class CowController3D : MonoBehaviour
     {
         state = CowState.Idle;
         nmAgent = GetComponent<NavMeshAgent>();
+        fov = transform.GetChild(1).gameObject;
+        anim = transform.GetChild(0).GetComponent<Animator>();
         turnTime = 0.5f;
         lowerTurnDeg = -turnDeg / 2f;
         upperTurnDeg = turnDeg / 2f;
@@ -39,9 +42,13 @@ public class CowController3D : MonoBehaviour
 
     void Update()
     {
+        if (fov.GetComponent<FOVController>().CanSeePlayer())
+            state = CowState.PlayerSeen;
+
         switch(state)
         {
             case CowState.Idle:
+                anim.SetBool("Walking", false);
                 if (type == CowType.Turning)
                 {
                     if (turnTimeLeft > 0)  // Turning
@@ -69,9 +76,11 @@ public class CowController3D : MonoBehaviour
             case CowState.InvestigateSound:
                 break;
             case CowState.PlayerSeen:
+                state = CowState.AttackPlayer;
                 break;
             case CowState.AttackPlayer:
-
+                anim.SetBool("Walking", true);
+                nmAgent.SetDestination(player.transform.position + player.GetComponent<PlayerController3D>().GetVelocity());
                 break;
         }
     }
