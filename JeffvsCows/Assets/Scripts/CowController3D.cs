@@ -43,7 +43,6 @@ public class CowController3D : MonoBehaviour
         allCows = GameObject.Find("AllCows").GetComponent<AllCows>();
         alertDist = 20f;
 
-        neighborDist = 10f;
         neighborTooCloseDist = 0.5f;
 
         turnTime = 0.5f;
