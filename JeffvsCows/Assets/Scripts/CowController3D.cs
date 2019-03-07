@@ -23,6 +23,9 @@ public class CowController3D : MonoBehaviour
 
     // Flocking
     float neighborTooCloseDist;
+    AudioSource cowAlertMoo;
+    AudioSource[] cowSounds;
+    bool alerted = false;
 
     public enum CowType
     {
@@ -49,6 +52,8 @@ public class CowController3D : MonoBehaviour
         turnTime = 0.5f;
         lowerTurnDeg = -turnDeg / 2f;
         upperTurnDeg = turnDeg / 2f;
+        cowSounds = GetComponents<AudioSource>();
+        cowAlertMoo = cowSounds[0];
     }
 
     void Update()
@@ -92,8 +97,15 @@ public class CowController3D : MonoBehaviour
                 {
                     cow.GetComponent<CowController3D>().state = CowState.AttackPlayer;
                 }
+                alerted = true;
                 break;
             case CowState.AttackPlayer:
+                if (alerted)
+                {
+                    cowAlertMoo.volume = 0.5f;
+                    cowAlertMoo.Play();
+                    alerted = false;
+                }
                 anim.SetBool("Walking", true);
                 Vector3 playerLoc = player.transform.position + player.GetComponent<PlayerController3D>().GetVelocity();
                 Vector3 avoidVec = Vector3.zero;
