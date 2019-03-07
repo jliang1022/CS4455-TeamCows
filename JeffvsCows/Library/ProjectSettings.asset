@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: 00000000000000000000000000000000
+  productGUID: 07adcf6329d5541aeaed73b42334d980
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -467,7 +467,7 @@ PlayerSettings:
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
   ps4ProGarlicHeapSize: 2560
-  ps4Passcode: 1fdhRxRZYw3GFhPr6BInZITSBQOgwxhH
+  ps4Passcode: ikWBMkUFPGcyeyBgeIV7gv1plRJlpomP
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -608,7 +608,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: 61af4dd5-5f43-4e7f-8bbd-d2a1a2a455e9
   framebufferDepthMemorylessMode: 0
-  projectName: 
+  projectName: JeffvsCows
   organizationId: arthur-shim
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
