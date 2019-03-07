@@ -18,6 +18,9 @@ public class CowController3D : MonoBehaviour
     CowState state;
     public GameObject player; 
     GameObject fov;
+    AudioSource cowAlertMoo;
+    AudioSource[] cowSounds;
+    bool alerted = false;
 
     public enum CowType
     {
@@ -38,6 +41,8 @@ public class CowController3D : MonoBehaviour
         turnTime = 0.5f;
         lowerTurnDeg = -turnDeg / 2f;
         upperTurnDeg = turnDeg / 2f;
+        cowSounds = GetComponents<AudioSource>();
+        cowAlertMoo = cowSounds[0];
     }
 
     void Update()
@@ -77,8 +82,15 @@ public class CowController3D : MonoBehaviour
                 break;
             case CowState.PlayerSeen:
                 state = CowState.AttackPlayer;
+                alerted = true;
                 break;
             case CowState.AttackPlayer:
+                if (alerted)
+                {
+                    cowAlertMoo.volume = 0.5f;
+                    cowAlertMoo.Play();
+                    alerted = false;
+                }
                 anim.SetBool("Walking", true);
                 nmAgent.SetDestination(player.transform.position + player.GetComponent<PlayerController3D>().GetVelocity());
                 break;
