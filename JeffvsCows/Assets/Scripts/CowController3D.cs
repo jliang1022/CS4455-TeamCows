@@ -15,9 +15,14 @@ public class CowController3D : MonoBehaviour
 
     NavMeshAgent nmAgent;
     Animator anim;
-    CowState state;
-    public GameObject player; 
+    public CowState state;
+    public GameObject player;
     GameObject fov;
+    AllCows allCows;
+    float alertDist;
+
+    // Flocking
+    float neighborTooCloseDist;
 
     public enum CowType
     {
@@ -35,6 +40,11 @@ public class CowController3D : MonoBehaviour
         nmAgent = GetComponent<NavMeshAgent>();
         fov = transform.GetChild(1).gameObject;
         anim = transform.GetChild(0).GetComponent<Animator>();
+        allCows = GameObject.Find("AllCows").GetComponent<AllCows>();
+        alertDist = 20f;
+
+        neighborTooCloseDist = 0.5f;
+
         turnTime = 0.5f;
         lowerTurnDeg = -turnDeg / 2f;
         upperTurnDeg = turnDeg / 2f;
@@ -77,10 +87,30 @@ public class CowController3D : MonoBehaviour
                 break;
             case CowState.PlayerSeen:
                 state = CowState.AttackPlayer;
+                foreach (GameObject cow in allCows.cows)
+                {
+                    cow.GetComponent<CowController3D>().state = CowState.AttackPlayer;
+                }
                 break;
             case CowState.AttackPlayer:
                 anim.SetBool("Walking", true);
-                nmAgent.SetDestination(player.transform.position + player.GetComponent<PlayerController3D>().GetVelocity());
+                Vector3 playerLoc = player.transform.position + player.GetComponent<PlayerController3D>().GetVelocity();
+                Vector3 avoidVec = Vector3.zero;
+
+                foreach (GameObject cow in allCows.cows)
+                {
+                    if (cow != gameObject)
+                    {
+                        float dist = Vector3.Distance(transform.position, cow.transform.position);
+                        if (dist < neighborTooCloseDist)
+                            avoidVec += cow.transform.position - transform.position;
+                    }
+                }
+
+                avoidVec = avoidVec.normalized * (1 / neighborTooCloseDist);
+
+                Vector3 dest = playerLoc + avoidVec;
+                nmAgent.SetDestination(dest);
                 break;
         }
     }

@@ -3513,8 +3513,9 @@ MonoBehaviour:
   turnSpeed: 12
   gravityScale: 1
   dashTime: 1
-  dashSpeed: 1
+  dashSpeed: 20
   moveDirection: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!143 &5969809720204511068
 CharacterController:
   m_ObjectHideFlags: 0
