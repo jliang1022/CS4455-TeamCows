@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{8171989B-1FE5-1DB0-8AD2-6948070FD985}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CowController3D.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AllCows.cs">
     <Files>
       <File FileName="../../../../Game Projects/Projects/Summer 2017/Assets/Scripts/Player3D.cs" Line="108" Column="12" />
       <File FileName="Assets/Scripts/PlayerController3D.cs" Line="34" Column="14" />
-      <File FileName="Assets/Scripts/CowController3D.cs" Line="82" Column="47" />
+      <File FileName="Assets/Scripts/CowController3D.cs" Line="39" Column="70" />
       <File FileName="../../Shim_A_m4/Assets/Scripts/MinionAI.cs" Line="20" Column="46" />
       <File FileName="Assets/Scripts/FOVController.cs" Line="7" Column="23" />
+      <File FileName="Assets/Scripts/AllCows.cs" Line="7" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -84,6 +84,7 @@
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\DoneAnimatorSetup.cs" />
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\DoneTags.cs" />
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\guiTextSet.cs" />
+    <Compile Include="Assets\Scripts\AllCows.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CowController3D.cs" />
     <Compile Include="Assets\Scripts\FOVController.cs" />
