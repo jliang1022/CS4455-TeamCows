@@ -33,6 +33,10 @@ public class PlayerController3D : MonoBehaviour
 
     void UpdateAnimation()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            anim.Play("Throw");
+        }
         anim.SetBool("Moving", Mathf.Abs(moveDirection.x) > 0.01 || Mathf.Abs(moveDirection.z) > 0.01);
     }
 
