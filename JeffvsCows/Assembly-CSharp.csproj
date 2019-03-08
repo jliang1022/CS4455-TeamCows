@@ -84,18 +84,19 @@
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\DoneAnimatorSetup.cs" />
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\DoneTags.cs" />
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\guiTextSet.cs" />
+    <Compile Include="Assets\MicahStuff\BallScript.cs" />
+    <Compile Include="Assets\MicahStuff\CanvasScript.cs" />
+    <Compile Include="Assets\MicahStuff\Thrower.cs" />
     <Compile Include="Assets\Scripts\AllCows.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CowController3D.cs" />
     <Compile Include="Assets\Scripts\FOVController.cs" />
-    <Compile Include="Assets\Scripts\old\Controller3D.cs" />
-    <Compile Include="Assets\Scripts\old\CowController.cs" />
-    <Compile Include="Assets\Scripts\old\PlayerAnimatorController.cs" />
-    <Compile Include="Assets\Scripts\old\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\old\RaycastController.cs" />
-    <Compile Include="Assets\Scripts\old\Rotate.cs" />
+    <Compile Include="Assets\Scripts\GateColliderController.cs" />
+    <Compile Include="Assets\Scripts\GateController.cs" />
+    <Compile Include="Assets\Scripts\KeyController.cs" />
     <Compile Include="Assets\Scripts\PlayerController3D.cs" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpecTransp.shader" />
+    <None Include="Assets\MicahStuff\Models\Key\readME keys.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/arthurshim/Documents/GeorgiaTech/CS4455/CS4455-TeamCows/JeffvsCows/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

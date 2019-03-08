@@ -1048,7 +1048,6 @@ MonoBehaviour:
   turnWaitTime: 1
   numOfTurns: 3
   state: 0
-  player: {fileID: 0}
 --- !u!195 &2384119587075903072
 NavMeshAgent:
   m_ObjectHideFlags: 0
