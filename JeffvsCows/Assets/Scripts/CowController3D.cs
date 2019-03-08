@@ -40,7 +40,7 @@ public class CowController3D : MonoBehaviour
         nmAgent = GetComponent<NavMeshAgent>();
         fov = transform.GetChild(1).gameObject;
         anim = transform.GetChild(0).GetComponent<Animator>();
-        allCows = GameObject.Find("AllCows").GetComponent<AllCows>();
+        //allCows = GameObject.Find("AllCows").GetComponent<AllCows>();
         alertDist = 20f;
 
         neighborTooCloseDist = 0.5f;

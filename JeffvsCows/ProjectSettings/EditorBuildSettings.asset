@@ -5,5 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Done/DoneScenes/DoneStealth.unity
+    guid: 65954b6251e793f419956b70f6bb1d54
+  - enabled: 1
+    path: Assets/Scenes/Start_Menu.unity
+    guid: 6576ba3fb5f20ae45a5c441ff17b11e9
+  - enabled: 1
+    path: Assets/Scenes/Test.unity
+    guid: 9b0e0d875315446f19c0fdcd0491ed81
+  m_configObjects: {}
