@@ -15,6 +15,7 @@ public class PlayerController3D : MonoBehaviour
     Animator anim;
     AudioSource footsteps;
     AudioSource dodge;
+    AudioSource keyPickup;
     AudioSource[] playerSounds;
 
     enum Direction { North, East, South, West, NorthEast, NorthWest, SouthEast, SouthWest };
@@ -27,6 +28,7 @@ public class PlayerController3D : MonoBehaviour
         faceDir = Direction.South;
         footsteps = playerSounds[0];
         dodge = playerSounds[1];
+        keyPickup = playerSounds[2];
     }
 
     void Update()
@@ -119,6 +121,7 @@ public class PlayerController3D : MonoBehaviour
         if (objectHeld == null)
         {
             objectHeld = obj;
+            keyPickup.Play();
             obj.GetComponent<KeyController>().PickUp();
             return true;
         }
