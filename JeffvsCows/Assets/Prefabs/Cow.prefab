@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 166239871787052779}
   - component: {fileID: 937672737}
   - component: {fileID: 2384119587075903072}
-  - component: {fileID: 166975811992239742}
+  - component: {fileID: 5581395584465700597}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -1071,7 +1071,7 @@ NavMeshAgent:
   m_BaseOffset: 1.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!82 &166975811992239742
+--- !u!82 &5581395584465700597
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
