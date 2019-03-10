@@ -59,7 +59,9 @@ public class CowController3D : MonoBehaviour
     void Update()
     {
         if (fov.GetComponent<FOVController>().CanSeePlayer())
+        {
             state = CowState.PlayerSeen;
+        }
 
         switch(state)
         {

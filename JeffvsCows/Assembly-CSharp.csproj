@@ -60,6 +60,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\DGModuleInstance.cs" />
+    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\DungeonGenerator.cs" />
+    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\Internals\DGModuleDefinition.cs" />
+    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\Internals\DGMPathsController.cs" />
+    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\Internals\DGUtils.cs" />
+    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\Internals\DungeonGeneratorEditor.cs" />
+    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Demo\Demo.cs" />
+    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Demo\World.cs" />
     <Compile Include="Assets\Done\DoneScripts\AlarmSystems\DoneAlarmLight.cs" />
     <Compile Include="Assets\Done\DoneScripts\AlarmSystems\DoneCCTVPlayerDetection.cs" />
     <Compile Include="Assets\Done\DoneScripts\AlarmSystems\DoneLaserBlinking.cs" />
@@ -97,6 +105,8 @@
     <Compile Include="Assets\Scripts\PlayerController3D.cs" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpecTransp.shader" />
     <None Include="Assets\MicahStuff\Models\Key\readME keys.txt" />
+    <None Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Documentation\Asset Store Descriptions.txt" />
+    <None Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Documentation\Documentation.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Georgia Tech/Junior Year 2018-2019/CS 4455/CS4455-TeamCows/JeffvsCows/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
