@@ -84,10 +84,14 @@
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\DoneAnimatorSetup.cs" />
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\DoneTags.cs" />
     <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\guiTextSet.cs" />
+    <Compile Include="Assets\MicahStuff\BallScript.cs" />
+    <Compile Include="Assets\MicahStuff\CanvasScript.cs" />
+    <Compile Include="Assets\MicahStuff\Thrower.cs" />
     <Compile Include="Assets\Scripts\AllCows.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CowController3D.cs" />
     <Compile Include="Assets\Scripts\FOVController.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\goToStart.cs" />
     <Compile Include="Assets\Scripts\Instructions.cs" />
     <Compile Include="Assets\Scripts\old\Controller3D.cs" />
@@ -97,6 +101,11 @@
     <Compile Include="Assets\Scripts\old\RaycastController.cs" />
     <Compile Include="Assets\Scripts\old\Rotate.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
+=======
+    <Compile Include="Assets\Scripts\GateColliderController.cs" />
+    <Compile Include="Assets\Scripts\GateController.cs" />
+    <Compile Include="Assets\Scripts\KeyController.cs" />
+>>>>>>> master
     <Compile Include="Assets\Scripts\PlayerController3D.cs" />
     <Compile Include="Assets\Scripts\playGame.cs" />
     <Compile Include="Assets\Scripts\Quit.cs" />
@@ -104,6 +113,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpecTransp.shader" />
+<<<<<<< HEAD
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
@@ -119,6 +129,9 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+=======
+    <None Include="Assets\MicahStuff\Models\Key\readME keys.txt" />
+>>>>>>> master
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Abdullah/Documents/GitHub/CS4455-TeamCows/JeffvsCows/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

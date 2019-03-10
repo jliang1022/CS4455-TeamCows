@@ -7,6 +7,8 @@ public class PlayerController3D : MonoBehaviour
     public float moveSpeed, turnSpeed, gravityScale = 1f, dashTime = 1f, dashSpeed = 1f;
     public Vector3 moveDirection, velocity;
     float dashTimeLeft;
+    GameObject nearbyObject;
+    GameObject objectHeld;
     CharacterController characterController;
     Direction faceDir;
     Animator anim;
@@ -28,12 +30,18 @@ public class PlayerController3D : MonoBehaviour
 
         UpdateFaceDir();
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             if (dashTimeLeft <= 0.001)
             {
                 dashTimeLeft = dashTime;
             }
+        }
+
+        if (nearbyObject != null && Input.GetKeyDown(KeyCode.Space))
+        {
+            PickUp(nearbyObject);
+            nearbyObject = null;
         }
 
         if (dashTimeLeft > 0)
@@ -88,5 +96,41 @@ public class PlayerController3D : MonoBehaviour
     public Vector3 GetVelocity()
     {
         return velocity;
+    }
+
+    public bool PickUp(GameObject obj)
+    {
+        if (objectHeld == null)
+        {
+            objectHeld = obj;
+            obj.GetComponent<KeyController>().PickUp();
+            return true;
+        }
+        return false;
+    }
+
+    public GameObject ObjectHeld()
+    {
+        return objectHeld;
+    }
+
+    public bool IsHoldingObject()
+    {
+        return objectHeld != null;
+    }
+
+    public void ThrowObject()
+    {
+        objectHeld = null;
+    }
+
+    public void UseKey()
+    {
+        objectHeld = null;
+    }
+
+    public void SetNearbyObject(GameObject obj)
+    {
+        nearbyObject = obj;
     }
 }
