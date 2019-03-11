@@ -7,6 +7,7 @@ public class BallScript : MonoBehaviour
     public GameObject player;
     public Rigidbody ball;
     public bool ballJustThrown;
+    AudioSource keyPickupSound;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,7 @@ public class BallScript : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         ball = GetComponent<Rigidbody>();
         ballJustThrown = false;
+        keyPickupSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,10 @@ public class BallScript : MonoBehaviour
         {
             if (player.transform.childCount < 2)
             {
+                if (this.tag == "Key")
+                {
+                    keyPickupSound.Play();
+                }
                 ball.useGravity = false;
                 ball.isKinematic = true;
                 ball.GetComponent<Collider>().enabled = false;
