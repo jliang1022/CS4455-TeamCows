@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController3D : MonoBehaviour
 {
     public float moveSpeed, turnSpeed, gravityScale = 1f, dashTime = 1f, dashSpeed = 1f;
@@ -13,20 +14,36 @@ public class PlayerController3D : MonoBehaviour
     Animator anim;
     public GameObject rightArm;
     public GameObject objToThrow;
+    AudioSource footsteps;
+    AudioSource dodge;
+    AudioSource keyPickup;
+    AudioSource[] playerSounds;
 
     enum Direction { North, East, South, West, NorthEast, NorthWest, SouthEast, SouthWest };
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        playerSounds = GetComponents<AudioSource>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         faceDir = Direction.South;
         rightArm = GameObject.FindGameObjectWithTag("ThrowingArm");
+        footsteps = playerSounds[0];
+        dodge = playerSounds[1];
+        keyPickup = playerSounds[2];
     }
 
     void Update()
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        if ((moveDirection.x != 0 || moveDirection.y != 0 || moveDirection.z != 0) && !anim.GetBool("Rolling"))
+        {
+            footsteps.volume = 0.3f;
+            footsteps.pitch = 0.9f;
+        } else
+        {
+            footsteps.volume = 0f;
+        }
         velocity = moveDirection.normalized * moveSpeed;
         velocity.y += Physics.gravity.y * gravityScale;
 
@@ -34,10 +51,11 @@ public class PlayerController3D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
+            dodge.Play();
             if (dashTimeLeft <= 0.001)
             {
                 dashTimeLeft = dashTime;
-            }
+            } 
         }
 
         if (dashTimeLeft > 0)
