@@ -6,6 +6,7 @@ public class GateColliderController : MonoBehaviour
 {
     bool openGate;
     GameObject gateKey;
+    Transform child;
     AudioSource gateOpoenAudio;
 
     void Start()
@@ -16,11 +17,20 @@ public class GateColliderController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        openGate = other.CompareTag("Player") && other.gameObject.GetComponent<PlayerController3D>().IsHoldingObject() && other.gameObject.GetComponent<PlayerController3D>().ObjectHeld() == gateKey;
-        if (openGate)
+        if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerController3D>().UseKey();
-            gateOpoenAudio.Play();
+            if (other.transform.childCount > 1)
+            {
+                child = other.transform.GetChild(1);
+                if (child.gameObject.tag == "Key")
+                {
+                    openGate = true;
+                    child.transform.parent = null;
+                    Destroy(child.gameObject);
+                    GetComponent<Collider>().enabled = false;
+                    gateOpoenAudio.Play();
+                }
+            }
         }
     }
 
