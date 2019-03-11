@@ -315,6 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 376826138987834269}
   - component: {fileID: 83324835}
+  - component: {fileID: 4971204395712481879}
   m_Layer: 0
   m_Name: Player Body
   m_TagString: Untagged
@@ -359,6 +360,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4971204395712481879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4162779684931650664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc5e3a8cd846434db3c45d85be3387e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightArm: {fileID: 0}
+  objToThrow: {fileID: 0}
 --- !u!1 &4362157487476087951
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +572,7 @@ GameObject:
   - component: {fileID: 6975920363258037962}
   m_Layer: 0
   m_Name: Right Arm
-  m_TagString: Untagged
+  m_TagString: ThrowingArm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3516,6 +3531,8 @@ MonoBehaviour:
   dashSpeed: 20
   moveDirection: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  rightArm: {fileID: 0}
+  objToThrow: {fileID: 0}
 --- !u!143 &5969809720204511068
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4005,7 +4022,7 @@ GameObject:
   - component: {fileID: 8342966318236644753}
   m_Layer: 0
   m_Name: Glasses
-  m_TagString: Untagged
+  m_TagString: Glasses
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

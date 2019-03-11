@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class Thrower : MonoBehaviour
 {
-    public GameObject rightArm;
+    public GameObject player;
     public GameObject objToThrow;
 
     // Start is called before the first frame update
     void Start()
     {
-        rightArm = GameObject.FindGameObjectWithTag("ThrowingArm");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void ThrowBall()
     {
-        foreach (Transform child in rightArm.transform)
+        foreach (Transform child in player.transform)
         {
             if (child.gameObject.tag == "Key" || child.gameObject.tag == "Rock")
             {

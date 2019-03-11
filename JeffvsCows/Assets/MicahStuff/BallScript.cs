@@ -4,45 +4,61 @@ using UnityEngine;
 
 public class BallScript : MonoBehaviour
 {
-    public GameObject arm;
+    public GameObject player;
     public Rigidbody ball;
+    public bool ballJustThrown;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        ball = GetComponent<Rigidbody>();
+        ballJustThrown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Mathf.Abs(arm.transform.position.x - ball.transform.position.x) + Mathf.Abs(arm.transform.position.y - ball.transform.position.y) + Mathf.Abs(arm.transform.position.z - ball.transform.position.z);
-        if (arm.transform.childCount < 3 && distance < 2.1f)
+        if (ball.velocity == Vector3.zero)
         {
-            ball.useGravity = false;
-            ball.isKinematic = true;
-            ball.transform.localScale = new Vector3(0, 0, 0);
-            // ball.transform.position = new Vector3(arm.transform.position.x, arm.transform.position.y - 1, arm.transform.position.z - 0.5f);
-            ball.transform.rotation = arm.transform.rotation;
-            transform.parent = arm.transform;
+            ballJustThrown = false;
+            ball.GetComponent<Collider>().enabled = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player" && !ballJustThrown)
+        {
+            if (player.transform.childCount < 2)
+            {
+                ball.useGravity = false;
+                ball.isKinematic = true;
+                ball.GetComponent<Collider>().enabled = false;
+                ball.transform.parent = player.transform;
+                ball.transform.rotation = player.transform.rotation;
+                ball.transform.position += new Vector3(0, 0.5f, 0);
+                ball.transform.localScale = new Vector3(0, 0, 0);
+            }
         }
     }
 
     public void ReleaseMe()
     {
-        if (arm.transform.childCount >= 3)
+        if (player.transform.childCount >= 2)
         {
             if (ball.tag == "Key")
             {
-                ball.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                this.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             } else if (ball.tag == "Rock")
             {
-                ball.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
+                ball.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f);
             }
             ball.useGravity = true;
             ball.isKinematic = false;
-            transform.parent = null;
-            transform.rotation = arm.transform.rotation;
-            ball.AddForce(transform.forward * 600);
+            ball.transform.parent = null;
+            ball.transform.rotation = player.transform.rotation;
+            ball.AddForce(transform.forward * 700);
         }
     }
 }
