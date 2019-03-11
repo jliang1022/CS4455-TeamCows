@@ -5,9 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class PlayerController3D : MonoBehaviour
 {
+    public GameObject spawn;
     public float moveSpeed, turnSpeed, gravityScale = 1f, dashTime = 1f, dashSpeed = 1f;
     public Vector3 moveDirection, velocity;
     float dashTimeLeft;
+    bool alive;
+    GameObject nearbyObject;
     GameObject objectHeld;
     CharacterController characterController;
     Direction faceDir;
@@ -16,6 +19,7 @@ public class PlayerController3D : MonoBehaviour
     public GameObject objToThrow;
     AudioSource footsteps;
     AudioSource dodge;
+    AudioSource keyPickup;
     AudioSource[] playerSounds;
 
     enum Direction { North, East, South, West, NorthEast, NorthWest, SouthEast, SouthWest };
@@ -29,41 +33,59 @@ public class PlayerController3D : MonoBehaviour
         rightArm = GameObject.FindGameObjectWithTag("ThrowingArm");
         footsteps = playerSounds[0];
         dodge = playerSounds[1];
+        keyPickup = playerSounds[2];
+        alive = true;
+
+        transform.position = spawn.transform.position;
     }
 
     void Update()
     {
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        if ((moveDirection.x != 0 || moveDirection.y != 0 || moveDirection.z != 0) && !anim.GetBool("Rolling"))
+        if (alive)
         {
-            footsteps.volume = 0.3f;
-            footsteps.pitch = 0.9f;
-        } else
-        {
-            footsteps.volume = 0f;
-        }
-        velocity = moveDirection.normalized * moveSpeed;
-        velocity.y += Physics.gravity.y * gravityScale;
-
-        UpdateFaceDir();
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
-        {
-            dodge.Play();
-            if (dashTimeLeft <= 0.001)
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            if ((moveDirection.x != 0 || moveDirection.y != 0 || moveDirection.z != 0) && !anim.GetBool("Rolling"))
             {
-                dashTimeLeft = dashTime;
-            } 
-        }
+                footsteps.volume = 0.3f;
+                footsteps.pitch = 0.9f;
+            }
+            else
+            {
+                footsteps.volume = 0f;
+            }
+            velocity = moveDirection.normalized * moveSpeed;
+            velocity.y += Physics.gravity.y * gravityScale;
 
-        if (dashTimeLeft > 0)
+            UpdateFaceDir();
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            {
+                dodge.Play();
+                if (dashTimeLeft <= 0.001)
+                {
+                    dashTimeLeft = dashTime;
+                }
+            }
+
+//             if (nearbyObject != null && Input.GetKeyDown(KeyCode.Space))
+//             {
+//                 PickUp(nearbyObject);
+//                 nearbyObject = null;
+//             }
+
+            if (dashTimeLeft > 0)
+            {
+                velocity = transform.forward * dashSpeed;
+                dashTimeLeft -= Time.deltaTime;
+            }
+
+            characterController.Move(velocity * Time.deltaTime);
+            UpdateAnimation();
+        }
+        else
         {
-            velocity = transform.forward * dashSpeed;
-            dashTimeLeft -= Time.deltaTime;
-        }
 
-        characterController.Move(velocity * Time.deltaTime);
-        UpdateAnimation();
+        }
     }
 
     void UpdateAnimation()
@@ -111,8 +133,51 @@ public class PlayerController3D : MonoBehaviour
         return velocity;
     }
 
+//     public bool PickUp(GameObject obj)
+//     {
+//         if (objectHeld == null)
+//         {
+//             objectHeld = obj;
+//             keyPickup.Play();
+//             obj.GetComponent<KeyController>().PickUp();
+//             return true;
+//         }
+//         return false;
+//     }
+
+    public GameObject ObjectHeld()
+    {
+        return objectHeld;
+    }
+
+    public bool IsHoldingObject()
+    {
+        return objectHeld != null;
+    }
+
+    public void ThrowObject()
+    {
+        objectHeld = null;
+    }
+
     public void UseKey()
     {
         objectHeld = null;
+    }
+
+    public void SetNearbyObject(GameObject obj)
+    {
+        nearbyObject = obj;
+    }
+
+    public void Die()
+    {
+        alive = false; 
+    }
+
+    public void Respawn()
+    {
+        alive = true;
+        transform.position = spawn.transform.position;
     }
 }

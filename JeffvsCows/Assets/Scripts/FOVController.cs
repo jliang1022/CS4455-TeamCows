@@ -8,13 +8,13 @@ public class FOVController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
         canSeePlayer = other.gameObject.CompareTag("Player");
     }
 
     private void OnTriggerExit(Collider other)
     {
-        canSeePlayer = !other.gameObject.CompareTag("Player");
+        if (canSeePlayer)
+            canSeePlayer = !other.gameObject.CompareTag("Player");
     }
 
     public bool CanSeePlayer()
