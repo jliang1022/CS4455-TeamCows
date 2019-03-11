@@ -15,6 +15,8 @@ public class PlayerController3D : MonoBehaviour
     CharacterController characterController;
     Direction faceDir;
     Animator anim;
+    public GameObject rightArm;
+    public GameObject objToThrow;
     AudioSource footsteps;
     AudioSource dodge;
     AudioSource keyPickup;
@@ -28,6 +30,7 @@ public class PlayerController3D : MonoBehaviour
         playerSounds = GetComponents<AudioSource>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         faceDir = Direction.South;
+        rightArm = GameObject.FindGameObjectWithTag("ThrowingArm");
         footsteps = playerSounds[0];
         dodge = playerSounds[1];
         keyPickup = playerSounds[2];
@@ -64,11 +67,11 @@ public class PlayerController3D : MonoBehaviour
                 }
             }
 
-            if (nearbyObject != null && Input.GetKeyDown(KeyCode.Space))
-            {
-                PickUp(nearbyObject);
-                nearbyObject = null;
-            }
+//             if (nearbyObject != null && Input.GetKeyDown(KeyCode.Space))
+//             {
+//                 PickUp(nearbyObject);
+//                 nearbyObject = null;
+//             }
 
             if (dashTimeLeft > 0)
             {
@@ -87,6 +90,7 @@ public class PlayerController3D : MonoBehaviour
 
     void UpdateAnimation()
     {
+        anim.SetBool("Throwing", Input.GetKeyDown("space"));
         anim.SetBool("Moving", Mathf.Abs(moveDirection.x) > 0.01 || Mathf.Abs(moveDirection.z) > 0.01);
         anim.SetBool("Rolling", dashTimeLeft > 0);
     }
@@ -129,17 +133,17 @@ public class PlayerController3D : MonoBehaviour
         return velocity;
     }
 
-    public bool PickUp(GameObject obj)
-    {
-        if (objectHeld == null)
-        {
-            objectHeld = obj;
-            keyPickup.Play();
-            obj.GetComponent<KeyController>().PickUp();
-            return true;
-        }
-        return false;
-    }
+//     public bool PickUp(GameObject obj)
+//     {
+//         if (objectHeld == null)
+//         {
+//             objectHeld = obj;
+//             keyPickup.Play();
+//             obj.GetComponent<KeyController>().PickUp();
+//             return true;
+//         }
+//         return false;
+//     }
 
     public GameObject ObjectHeld()
     {
