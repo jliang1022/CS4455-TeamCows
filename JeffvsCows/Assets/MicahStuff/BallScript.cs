@@ -64,6 +64,7 @@ public class BallScript : MonoBehaviour
             ball.isKinematic = false;
             ball.transform.parent = null;
             ball.transform.rotation = player.transform.rotation;
+            ball.GetComponent<Collider>().enabled = false;
             ball.AddForce(transform.forward * 700);
         }
     }

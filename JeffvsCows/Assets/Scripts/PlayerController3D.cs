@@ -19,7 +19,7 @@ public class PlayerController3D : MonoBehaviour
     public GameObject objToThrow;
     AudioSource footsteps;
     AudioSource dodge;
-    AudioSource keyPickup;
+    //AudioSource keyPickup;
     AudioSource[] playerSounds;
 
     enum Direction { North, East, South, West, NorthEast, NorthWest, SouthEast, SouthWest };
@@ -33,7 +33,7 @@ public class PlayerController3D : MonoBehaviour
         rightArm = GameObject.FindGameObjectWithTag("ThrowingArm");
         footsteps = playerSounds[0];
         dodge = playerSounds[1];
-        keyPickup = playerSounds[2];
+        //keyPickup = playerSounds[2];
         alive = true;
 
         transform.position = spawn.transform.position;
