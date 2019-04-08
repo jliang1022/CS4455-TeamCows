@@ -3475,7 +3475,7 @@ GameObject:
   - component: {fileID: 8342966317948051790}
   - component: {fileID: 1780011002}
   - component: {fileID: 1780011000}
-  - component: {fileID: 5969809720204511068}
+  - component: {fileID: 4432012702238977056}
   - component: {fileID: 1343224061448358698}
   - component: {fileID: 3715508311172771800}
   m_Layer: 0
@@ -3533,9 +3533,7 @@ MonoBehaviour:
   dashSpeed: 20
   moveDirection: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  rightArm: {fileID: 0}
-  objToThrow: {fileID: 0}
---- !u!143 &5969809720204511068
+--- !u!143 &4432012702238977056
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
