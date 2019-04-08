@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class GateController : MonoBehaviour
 {
-    public Vector3 closedPos, openPos;
+    Vector3 closedPos;
+    public GateType type;
+    public Vector3 openPos;
     public GameObject gateKey;
     GateColliderController gateColliderController;
     bool gateOpening;
     float gateSpeed, startTime, openDist;
 
+    public enum GateType
+    {
+        xGate, yGate, zGate
+    }
+
     void Start()
     {
-        closedPos = transform.position;
+        closedPos = transform.localPosition;
         gateColliderController = transform.GetChild(0).GetComponent<GateColliderController>();
+        if (type == GateType.xGate)
+            openPos = new Vector3(openPos.x, closedPos.y, closedPos.z);
+        else if (type == GateType.yGate)
+            openPos = new Vector3(closedPos.x, openPos.y, closedPos.z);
+        else
+            openPos = new Vector3(closedPos.x, closedPos.y, openPos.z);
         openDist = Vector3.Distance(closedPos, openPos);
-        gateSpeed = 5f;
+        gateSpeed = 2f;
    }
 
     private void Update()
@@ -37,7 +50,7 @@ public class GateController : MonoBehaviour
         {
             float distCovered = (Time.time - startTime) * gateSpeed;
             float fracJourney = distCovered / openDist;
-            transform.position = Vector3.Lerp(closedPos, openPos, fracJourney);
+            transform.localPosition = Vector3.Lerp(closedPos, openPos, fracJourney);
         }
     }
 

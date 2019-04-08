@@ -18,7 +18,7 @@ public class CowController3D : MonoBehaviour
     public CowState state;
     GameObject player;
     GameObject fov;
-    AllCows allCows;
+    GameObject[] allCows;
     float alertDist, timeBeforeLosePlayer, timeBeforeLosePlayerLeft, killDist;
 
     // Flocking
@@ -43,7 +43,7 @@ public class CowController3D : MonoBehaviour
         nmAgent = GetComponent<NavMeshAgent>();
         fov = transform.GetChild(1).gameObject;
         anim = transform.GetChild(0).GetComponent<Animator>();
-        allCows = GameObject.Find("GlobalCowHolder").GetComponent<AllCows>();
+        allCows = GameObject.Find("GlobalControl").GetComponent<GlobalController>().cows;
         alertDist = 20f;
         player = GameObject.Find("Player");
         timeBeforeLosePlayer = 5f;
@@ -99,7 +99,7 @@ public class CowController3D : MonoBehaviour
                 break;
             case CowState.PlayerSeen:
                 state = CowState.AttackPlayer;
-                foreach (GameObject cow in allCows.cows)
+                foreach (GameObject cow in allCows)
                 {
                     if (cow.GetComponent<CowController3D>().CanSeePlayer())
                         cow.GetComponent<CowController3D>().state = CowState.AttackPlayer;
@@ -117,7 +117,7 @@ public class CowController3D : MonoBehaviour
                 Vector3 playerLoc = player.transform.position + player.GetComponent<PlayerController3D>().GetVelocity();
                 Vector3 avoidVec = Vector3.zero;
 
-                foreach (GameObject cow in allCows.cows)
+                foreach (GameObject cow in allCows)
                 {
                     if (cow != gameObject)
                     {
@@ -194,7 +194,7 @@ public class CowController3D : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < killDist)
         {
             GameObject.Find("GlobalControl").GetComponent<GlobalController>().KillPlayer();
-            foreach (GameObject cow in allCows.cows)
+            foreach (GameObject cow in allCows)
             {
                 cow.GetComponent<CowController3D>().state = CowState.Idle;
             }
