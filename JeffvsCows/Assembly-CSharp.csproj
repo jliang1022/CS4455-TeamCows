@@ -141,6 +141,7 @@
     <Compile Include="Assets\MicahStuff\CanvasScript.cs" />
     <Compile Include="Assets\Scripts\AllCows.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\CowAutoController3D.cs" />
     <Compile Include="Assets\Scripts\CowController3D.cs" />
     <Compile Include="Assets\Scripts\FOVController.cs" />
     <Compile Include="Assets\Scripts\GateColliderController.cs" />
