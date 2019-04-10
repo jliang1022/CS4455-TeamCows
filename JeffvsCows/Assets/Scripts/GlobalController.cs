@@ -8,6 +8,7 @@ public class GlobalController : MonoBehaviour
     public string nextLevel;
     public Canvas deathUI;
     public float playerRespawnTime;
+    public GameObject[] cows;
     float playerRespawnTimeLeft;
 
     private void Start()
