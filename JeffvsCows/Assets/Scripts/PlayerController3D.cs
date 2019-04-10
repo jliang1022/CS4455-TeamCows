@@ -172,7 +172,15 @@ public class PlayerController3D : MonoBehaviour
 
     public void Die()
     {
+        anim.SetTrigger("Dying1");
+        StartCoroutine(death());
         alive = false; 
+    }
+
+    IEnumerator death()
+    {
+        yield return new WaitForSeconds(0.5);
+        anim.SetTrigger("Dying2");
     }
 
     public void Respawn()
