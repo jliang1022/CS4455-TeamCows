@@ -9,8 +9,13 @@ public class PlayerController3D : MonoBehaviour
     public float moveSpeed, turnSpeed, gravityScale = 1f, dashTime = 1f, dashSpeed = 1f;
     public Vector3 moveDirection, velocity;
     float dashTimeLeft;
+<<<<<<< HEAD
     bool alive;
     bool alive2;
+=======
+    bool alive, dashing;
+    float dashRechargeTime, dashRechargeTimeLeft;
+>>>>>>> arthur
     GameObject nearbyObject;
     GameObject objectHeld;
     CharacterController characterController;
@@ -36,7 +41,12 @@ public class PlayerController3D : MonoBehaviour
         dodge = playerSounds[1];
         //keyPickup = playerSounds[2];
         alive = true;
+<<<<<<< HEAD
         alive2 = false;
+=======
+        dashRechargeTime = 1f;
+
+>>>>>>> arthur
         transform.position = spawn.transform.position;
     }
 
@@ -59,7 +69,7 @@ public class PlayerController3D : MonoBehaviour
 
             UpdateFaceDir();
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && dashRechargeTimeLeft <= 0)
             {
                 dodge.Play();
                 if (dashTimeLeft <= 0.001)
@@ -68,17 +78,23 @@ public class PlayerController3D : MonoBehaviour
                 }
             }
 
-//             if (nearbyObject != null && Input.GetKeyDown(KeyCode.Space))
-//             {
-//                 PickUp(nearbyObject);
-//                 nearbyObject = null;
-//             }
-
             if (dashTimeLeft > 0)
             {
+                dashing = true;
                 velocity = transform.forward * dashSpeed;
                 dashTimeLeft -= Time.deltaTime;
             }
+            else
+            {
+                if (dashing)
+                {
+                    dashing = false;
+                    dashRechargeTimeLeft = dashRechargeTime;
+                }
+            }
+                
+            if (dashRechargeTimeLeft > 0)
+                dashRechargeTimeLeft -= Time.deltaTime;
 
             characterController.Move(velocity * Time.deltaTime);
             UpdateAnimation();
@@ -194,5 +210,10 @@ public class PlayerController3D : MonoBehaviour
         alive = true;
         alive2 = false;
         transform.position = spawn.transform.position;
+    }
+
+    public bool Dashing()
+    {
+        return dashing;
     }
 }
