@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class CowController3D : MonoBehaviour
 {
     public CowType type;
+    Vector3 defaultPos;
+    Quaternion defaultRot;
+    float rotateSpeed = 10f;
 
     // Turning Cow
     public float turnDeg, turnWaitTime, numOfTurns;
@@ -13,13 +16,23 @@ public class CowController3D : MonoBehaviour
     bool turningRight;
     float timeLeftBeforeTurn, currentOrientation;
 
+    // Moving Cow
+    public GameObject[] waypoints;
+    Vector3[] path;
+    int currPathNode;
+
     NavMeshAgent nmAgent;
     Animator anim;
     public CowState state;
     GameObject player;
     GameObject fov;
     GameObject[] allCows;
-    float alertDist, timeBeforeLosePlayer, timeBeforeLosePlayerLeft, killDist;
+    GameObject sourceOfSound;
+    float alertDist, timeBeforeLosePlayer, timeBeforeLosePlayerLeft, killDist, stoppingDist, eyesightDist;
+
+    float soundInvestigateTime, soundInvestigateTimeLeft;
+
+    float alertTime = 1f, alertTimeLeft;
 
     // Flocking
     float neighborTooCloseDist;
@@ -34,20 +47,38 @@ public class CowController3D : MonoBehaviour
 
     public enum CowState
     {
-        Idle, InvestigateSound, PlayerSeen, AttackPlayer
+        Idle, InvestigateSound, PlayerSeen, AttackPlayer, ReturnToDefault
     }
 
     void Start()
     {
+        defaultPos = transform.position;
+        defaultRot = transform.rotation;
+
+        path = new Vector3[waypoints.Length + 1];
+        path[0] = defaultPos;
+        for (int i = 0; i < waypoints.Length; i++)
+            path[i + 1] = waypoints[i].transform.position;
+
         state = CowState.Idle;
         nmAgent = GetComponent<NavMeshAgent>();
         fov = transform.GetChild(1).gameObject;
         anim = transform.GetChild(0).GetComponent<Animator>();
         allCows = GameObject.Find("GlobalControl").GetComponent<GlobalController>().cows;
         alertDist = 20f;
+
         player = GameObject.Find("Player");
+        if (player == null)
+            Debug.Log("Cow could not find player");
+
         timeBeforeLosePlayer = 5f;
         killDist = 3.5f;
+        stoppingDist = 3f;
+        nmAgent.stoppingDistance = stoppingDist;
+        nmAgent.speed = 10f;
+        eyesightDist = 10f;
+
+        soundInvestigateTime = 3f;
 
         neighborTooCloseDist = 0.5f;
 
@@ -60,18 +91,27 @@ public class CowController3D : MonoBehaviour
 
     void Update()
     {
-        if (fov.GetComponent<FOVController>().CanSeePlayer())
+        Debug.Log(state);
+        Debug.Log(player);
+        if (fov.GetComponent<FOVController>().CanSeePlayer() && !player.GetComponent<PlayerController3D>().Dashing() && state != CowState.PlayerSeen && state != CowState.AttackPlayer)
         {
+            player = fov.GetComponent<FOVController>().player;
             state = CowState.PlayerSeen;
         }
 
-        CanSeePlayer();
-
         switch(state)
         {
+            case CowState.ReturnToDefault:
+                if (SetToDefaultPos())
+                    state = CowState.Idle;
+                break;
             case CowState.Idle:
                 anim.SetBool("Walking", false);
-                if (type == CowType.Turning)
+                if (type == CowType.Stationary)
+                {
+                    //SetToDefaultPos();
+                }
+                else if (type == CowType.Turning)
                 {
                     if (turnTimeLeft > 0)  // Turning
                     {
@@ -86,7 +126,7 @@ public class CowController3D : MonoBehaviour
                     {
                         //Debug.Log("Starting turn");
                         turnDist = CalculateStationaryTurnAmount();
-                        turnTimeLeft = turnTime; 
+                        turnTimeLeft = turnTime;
                     }
                     else  // waiting to turn
                     {
@@ -94,17 +134,63 @@ public class CowController3D : MonoBehaviour
                         timeLeftBeforeTurn -= Time.deltaTime;
                     }
                 }
+                else if (type == CowType.Moving)
+                {
+                    anim.SetBool("Walking", true);
+                    nmAgent.SetDestination(path[currPathNode]);
+                    if (nmAgent.remainingDistance < nmAgent.stoppingDistance && !nmAgent.pathPending)
+                    {
+                        currPathNode++;
+                        if (currPathNode >= path.Length)
+                            currPathNode = 0;
+                    }
+                }
                 break;
             case CowState.InvestigateSound:
+                anim.SetBool("Walking", true);
+                anim.SetBool("Alarm", true);
+                if (sourceOfSound == null)
+                {
+                    Debug.Log("No sound source");
+                    state = CowState.ReturnToDefault;
+                    anim.SetBool("Alarm", false);
+                }
+                else
+                {
+                    if (soundInvestigateTimeLeft > 0)
+                    {
+                        soundInvestigateTimeLeft -= Time.deltaTime;
+                        if (soundInvestigateTimeLeft <= 0)
+                        {
+                            anim.SetBool("Alarm", false);
+                            state = CowState.ReturnToDefault;
+                        }
+                    }
+                    else
+                    {
+                        nmAgent.SetDestination(sourceOfSound.transform.position);
+                        if (nmAgent.remainingDistance < nmAgent.stoppingDistance && !nmAgent.pathPending)
+                        {
+                            soundInvestigateTimeLeft = soundInvestigateTime;
+                        }
+                    }
+
+                }
                 break;
             case CowState.PlayerSeen:
-                state = CowState.AttackPlayer;
-                foreach (GameObject cow in allCows)
+                anim.SetBool("Alarm", true);
+                if (!alerted)
                 {
-                    if (cow.GetComponent<CowController3D>().CanSeePlayer())
-                        cow.GetComponent<CowController3D>().state = CowState.AttackPlayer;
+                    alerted = true;
+                    alertTimeLeft = alertTime;
                 }
-                alerted = true;
+                if (alertTimeLeft > 0)
+                    alertTimeLeft -= Time.deltaTime;
+                else
+                {
+                    anim.SetBool("Alarm", false);
+                    state = CowState.AttackPlayer;
+                }
                 break;
             case CowState.AttackPlayer:
                 if (alerted)
@@ -112,6 +198,12 @@ public class CowController3D : MonoBehaviour
                     cowAlertMoo.volume = 0.9f;
                     cowAlertMoo.Play();
                     alerted = false;
+                    foreach (GameObject cow in allCows)
+                    {
+                        if (cow != gameObject && cow.GetComponent<CowController3D>().state != CowState.AttackPlayer && cow.GetComponent<CowController3D>().state != CowState.PlayerSeen)
+                            if (cow.GetComponent<CowController3D>().CanSeePlayer())
+                                cow.GetComponent<CowController3D>().state = CowState.PlayerSeen;
+                    }
                 }
                 anim.SetBool("Walking", true);
                 Vector3 playerLoc = player.transform.position + player.GetComponent<PlayerController3D>().GetVelocity();
@@ -140,12 +232,30 @@ public class CowController3D : MonoBehaviour
                 }
 
                 if (timeBeforeLosePlayerLeft <= 0)
-                    state = CowState.Idle;
+                {
+                    state = CowState.ReturnToDefault;
+                }
 
                 Vector3 dest = playerLoc + avoidVec;
                 nmAgent.SetDestination(dest);
                 break;
         }
+    }
+
+    bool SetToDefaultPos()
+    {
+        if (Vector3.Distance(transform.position, defaultPos) > 1f)
+        {
+            anim.SetBool("Walking", true);
+            nmAgent.SetDestination(defaultPos);
+        }
+        if (transform.rotation != defaultRot)
+            if (nmAgent.remainingDistance < nmAgent.stoppingDistance && !nmAgent.pathPending)
+            {
+                anim.SetBool("Walking", false);
+                transform.rotation = Quaternion.Lerp(transform.rotation, defaultRot, Time.deltaTime * rotateSpeed);
+            }
+        return Vector3.Distance(transform.position, defaultPos) < 1f && transform.rotation == defaultRot;
     }
 
     float CalculateStationaryTurnAmount()
@@ -186,7 +296,7 @@ public class CowController3D : MonoBehaviour
         {
             canSeePlayer = hit.collider.CompareTag("Player");
         }
-        return canSeePlayer;
+        return canSeePlayer && Vector3.Distance(transform.position, player.transform.position) <= eyesightDist;
     }
 
     void CheckPlayerCaught()
@@ -196,8 +306,19 @@ public class CowController3D : MonoBehaviour
             GameObject.Find("GlobalControl").GetComponent<GlobalController>().KillPlayer();
             foreach (GameObject cow in allCows)
             {
-                cow.GetComponent<CowController3D>().state = CowState.Idle;
+                cow.GetComponent<CowController3D>().state = CowState.ReturnToDefault;
             }
         }
+    }
+
+    public void HearSound(GameObject source)
+    {
+        sourceOfSound = source;
+        state = CowState.InvestigateSound;
+    }
+
+    public bool CanHearSound(Vector3 soundLoc)
+    {
+        return Vector3.Distance(transform.position, soundLoc) < alertDist;
     }
 }

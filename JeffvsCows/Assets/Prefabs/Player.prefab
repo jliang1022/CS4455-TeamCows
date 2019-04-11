@@ -3526,13 +3526,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44efcfca015964b05854fd5add8f72f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  spawn: {fileID: 0}
+  moveSpeed: 8
   turnSpeed: 12
   gravityScale: 1
   dashTime: 1
-  dashSpeed: 20
+  dashSpeed: 15
   moveDirection: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  rightArm: {fileID: 0}
+  objToThrow: {fileID: 0}
 --- !u!143 &4432012702238977056
 CharacterController:
   m_ObjectHideFlags: 0

@@ -11,6 +11,11 @@ TagManager:
   - WayPoint
   - Siren
   - Alarm
+  - Key
+  - Rock
+  - ThrowingArm
+  - Glasses
+  - Environment
   layers:
   - Default
   - TransparentFX

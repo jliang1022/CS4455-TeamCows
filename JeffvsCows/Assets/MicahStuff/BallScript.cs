@@ -4,33 +4,36 @@ using UnityEngine;
 
 public class BallScript : MonoBehaviour
 {
-    public GameObject player;
-    public Rigidbody ball;
-    public bool ballJustThrown;
+    GameObject player;
+    Rigidbody ball;
+    bool canPickUp, thrown;
     AudioSource keyPickupSound;
+    float colliderOffTime, colliderOffTimeLeft;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         ball = GetComponent<Rigidbody>();
-        ballJustThrown = false;
+        canPickUp = true;
         keyPickupSound = GetComponent<AudioSource>();
+        colliderOffTime = 0.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ball.velocity == Vector3.zero)
+        if (colliderOffTimeLeft <= 0)
         {
-            ballJustThrown = false;
             ball.GetComponent<Collider>().enabled = true;
         }
+        else
+            colliderOffTimeLeft -= Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !ballJustThrown)
+        if (other.tag == "Player" && canPickUp)
         {
             if (player.transform.childCount < 2)
             {
@@ -41,11 +44,25 @@ public class BallScript : MonoBehaviour
                 ball.useGravity = false;
                 ball.isKinematic = true;
                 ball.GetComponent<Collider>().enabled = false;
+                colliderOffTimeLeft = colliderOffTime;
                 ball.transform.parent = player.transform;
                 ball.transform.rotation = player.transform.rotation;
                 ball.transform.position += new Vector3(0, 0.5f, 0);
                 ball.transform.localScale = new Vector3(0, 0, 0);
+                canPickUp = false;
+                thrown = true;
             }
+        }
+        else if (other.CompareTag("Environment"))
+        {
+            canPickUp = true;
+            if (thrown)
+            {
+                //play sound
+                GameObject.Find("GlobalControl").GetComponent<GlobalController>().AlertCows(gameObject);
+                Debug.Log("Sound made");
+            }
+            thrown = false;
         }
     }
 
@@ -55,7 +72,7 @@ public class BallScript : MonoBehaviour
         {
             if (ball.tag == "Key")
             {
-                this.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             } else if (ball.tag == "Rock")
             {
                 ball.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f);
