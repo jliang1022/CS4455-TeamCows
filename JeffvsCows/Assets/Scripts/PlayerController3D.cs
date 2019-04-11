@@ -10,6 +10,7 @@ public class PlayerController3D : MonoBehaviour
     public Vector3 moveDirection, velocity;
     float dashTimeLeft;
     bool alive;
+    bool alive2;
     GameObject nearbyObject;
     GameObject objectHeld;
     CharacterController characterController;
@@ -35,7 +36,7 @@ public class PlayerController3D : MonoBehaviour
         dodge = playerSounds[1];
         //keyPickup = playerSounds[2];
         alive = true;
-
+        alive2 = false;
         transform.position = spawn.transform.position;
     }
 
@@ -172,12 +173,26 @@ public class PlayerController3D : MonoBehaviour
 
     public void Die()
     {
-        alive = false; 
+        alive = false;
+        anim.SetBool("Moving", false);
+        AfterDie();
+    }
+
+    public void AfterDie()
+    {
+        if (!alive2)
+        {
+            anim.applyRootMotion = true;
+            anim.SetTrigger("Dying");
+            alive2 = true;
+        }
     }
 
     public void Respawn()
     {
+        anim.applyRootMotion = false;
         alive = true;
+        alive2 = false;
         transform.position = spawn.transform.position;
     }
 }
