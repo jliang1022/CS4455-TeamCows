@@ -91,8 +91,6 @@ public class CowController3D : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
-        Debug.Log(player);
         if (fov.GetComponent<FOVController>().CanSeePlayer() && !player.GetComponent<PlayerController3D>().Dashing() && state != CowState.PlayerSeen && state != CowState.AttackPlayer)
         {
             player = fov.GetComponent<FOVController>().player;
@@ -179,6 +177,8 @@ public class CowController3D : MonoBehaviour
                 break;
             case CowState.PlayerSeen:
                 anim.SetBool("Alarm", true);
+                cowAlertMoo.volume = 0.9f;
+                cowAlertMoo.Play();
                 if (!alerted)
                 {
                     alerted = true;
@@ -195,8 +195,6 @@ public class CowController3D : MonoBehaviour
             case CowState.AttackPlayer:
                 if (alerted)
                 {
-                    cowAlertMoo.volume = 0.9f;
-                    cowAlertMoo.Play();
                     alerted = false;
                     foreach (GameObject cow in allCows)
                     {

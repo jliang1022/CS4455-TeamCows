@@ -60,14 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\DGModuleInstance.cs" />
-    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\DungeonGenerator.cs" />
-    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\Internals\DGModuleDefinition.cs" />
-    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\Internals\DGMPathsController.cs" />
-    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\Internals\DGUtils.cs" />
-    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Asset\Internals\DungeonGeneratorEditor.cs" />
-    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Demo\Demo.cs" />
-    <Compile Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Demo\World.cs" />
     <Compile Include="Assets\Done\DoneScripts\AlarmSystems\DoneAlarmLight.cs" />
     <Compile Include="Assets\Done\DoneScripts\AlarmSystems\DoneCCTVPlayerDetection.cs" />
     <Compile Include="Assets\Done\DoneScripts\AlarmSystems\DoneLaserBlinking.cs" />
@@ -139,7 +131,6 @@
     <Compile Include="Assets\LowpolyDungeonAssets\Demo Scene\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\MicahStuff\BallScript.cs" />
     <Compile Include="Assets\MicahStuff\CanvasScript.cs" />
-    <Compile Include="Assets\Scripts\AllCows.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CowController3D.cs" />
     <Compile Include="Assets\Scripts\FOVController.cs" />
@@ -201,7 +192,6 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\LowpolyDungeonAssets\Demo Scene\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
     <None Include="Assets\LowpolyDungeonAssets\Demo Scene\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
-    <None Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Documentation\Asset Store Descriptions.txt" />
     <None Include="Assets\LowpolyDungeonAssets\Demo Scene\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -214,7 +204,6 @@
     <None Include="Assets\LowpolyDungeonAssets\Demo Scene\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\LowpolyDungeonAssets\Demo Scene\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
-    <None Include="Assets\Asset - Evolutive Dungeon Generator (LITE)\Documentation\Documentation.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\LowpolyDungeonAssets\Demo Scene\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />

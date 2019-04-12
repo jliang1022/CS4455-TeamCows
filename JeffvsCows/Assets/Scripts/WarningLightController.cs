@@ -18,7 +18,6 @@ public class WarningLightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(on);
         if (activated)
         {
             if (!on)

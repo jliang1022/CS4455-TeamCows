@@ -13,6 +13,12 @@ public class Thrower : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            ThrowBall();
+    }
+
     void ThrowBall()
     {
         foreach (Transform child in player.transform)
@@ -22,7 +28,10 @@ public class Thrower : MonoBehaviour
                 objToThrow = child.gameObject;
             }
         }
-        BallScript ballscript = objToThrow.GetComponent<BallScript>();
-        ballscript.ReleaseMe();
+        if (objToThrow != null)
+        {
+            BallScript ballscript = objToThrow.GetComponent<BallScript>();
+            ballscript.ReleaseMe();
+        }
     }
 }
