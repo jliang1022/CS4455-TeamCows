@@ -7,7 +7,7 @@ public class BallScript : MonoBehaviour
     GameObject player;
     Rigidbody ball;
     bool canPickUp, thrown;
-    AudioSource keyPickupSound;
+    AudioSource sound;
     float colliderOffTime, colliderOffTimeLeft;
 
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class BallScript : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         ball = GetComponent<Rigidbody>();
         canPickUp = true;
-        keyPickupSound = GetComponent<AudioSource>();
+        sound = GetComponent<AudioSource>();
         colliderOffTime = 0.5f;
     }
 
@@ -37,9 +37,9 @@ public class BallScript : MonoBehaviour
         {
             if (player.transform.childCount < 2)
             {
-                if (this.tag == "Key")
+                if (CompareTag("Key"))
                 {
-                    keyPickupSound.Play();
+                    sound.Play();
                 }
                 ball.useGravity = false;
                 ball.isKinematic = true;
@@ -58,7 +58,7 @@ public class BallScript : MonoBehaviour
             canPickUp = true;
             if (thrown)
             {
-                //play sound
+                sound.Play();
                 GameObject.Find("GlobalControl").GetComponent<GlobalController>().AlertCows(gameObject);
                 Debug.Log("Sound made");
             }

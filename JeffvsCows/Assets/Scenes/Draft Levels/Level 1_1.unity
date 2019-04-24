@@ -39,10 +39,14 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
 =======
   m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.57482487, a: 1}
 >>>>>>> arthur
+=======
+  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964127, b: 0.5748172, a: 1}
+>>>>>>> bc70d9b972af7b0752e986d7f53615a77130b8b1
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -689,6 +693,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 400811910}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &381910654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2180736146704835380, guid: add8d1d116bce4f218e661d057bd444a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2180736147708775458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf0b450b3f0d4765b0cecf5315da0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &382070271
 GameObject:
   m_ObjectHideFlags: 0
@@ -5120,12 +5136,12 @@ PrefabInstance:
     - target: {fileID: 2180736146704835386, guid: add8d1d116bce4f218e661d057bd444a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 33.78
       objectReference: {fileID: 0}
     - target: {fileID: 2180736146704835386, guid: add8d1d116bce4f218e661d057bd444a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2180736146704835386, guid: add8d1d116bce4f218e661d057bd444a,
         type: 3}
@@ -5170,11 +5186,6 @@ PrefabInstance:
     - target: {fileID: 2180736146704835386, guid: add8d1d116bce4f218e661d057bd444a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2180736146704835381, guid: add8d1d116bce4f218e661d057bd444a,
-        type: 3}
-      propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5463,7 +5474,7 @@ PrefabInstance:
     - target: {fileID: 4097004272068782364, guid: 298891fa9d59041e6a280b19ed8d5469,
         type: 3}
       propertyPath: nextLevel
-      value: Level 2
+      value: Level 2_1
       objectReference: {fileID: 0}
     - target: {fileID: 4097004272068782364, guid: 298891fa9d59041e6a280b19ed8d5469,
         type: 3}
@@ -5485,6 +5496,11 @@ PrefabInstance:
       propertyPath: cows.Array.data[1]
       value: 
       objectReference: {fileID: 2119873890}
+    - target: {fileID: 4097004272068782364, guid: 298891fa9d59041e6a280b19ed8d5469,
+        type: 3}
+      propertyPath: wlc
+      value: 
+      objectReference: {fileID: 381910654}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 298891fa9d59041e6a280b19ed8d5469, type: 3}
 --- !u!1001 &8896473753259913669

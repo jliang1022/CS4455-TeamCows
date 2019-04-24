@@ -10,12 +10,12 @@ public class GlobalController : MonoBehaviour
     public float playerRespawnTime;
     public GameObject[] cows;
     float playerRespawnTimeLeft;
-    WarningLightController wlc;
+    public WarningLightController wlc;
 
     private void Start()
     {
         RevivePlayer();
-        wlc = GameObject.Find("Warning Light").GetComponent<WarningLightController>();
+        //wlc = GameObject.Find("Warning Light").GetComponent<WarningLightController>();
         if (wlc == null)
             Debug.Log("No warning light found");
     }
@@ -37,6 +37,7 @@ public class GlobalController : MonoBehaviour
             if (cow.GetComponent<CowController3D>().state == CowController3D.CowState.PlayerSeen || cow.GetComponent<CowController3D>().state == CowController3D.CowState.AttackPlayer)
                 warning = true;
         }
+
         if (!warning)
             wlc.Deactivate();
         else

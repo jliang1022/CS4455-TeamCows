@@ -22,7 +22,7 @@ public class GateColliderController : MonoBehaviour
             if (other.transform.childCount > 1)
             {
                 child = other.transform.GetChild(1);
-                if (child.gameObject.tag == "Key")
+                if (child.gameObject == gateKey)
                 {
                     openGate = true;
                     child.transform.parent = null;

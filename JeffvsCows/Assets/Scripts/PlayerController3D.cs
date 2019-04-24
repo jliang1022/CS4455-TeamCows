@@ -35,6 +35,7 @@ public class PlayerController3D : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerSounds = GetComponents<AudioSource>();
         anim = transform.GetChild(0).GetComponent<Animator>();
+        Debug.Log(anim);
         faceDir = Direction.South;
         rightArm = GameObject.FindGameObjectWithTag("ThrowingArm");
         footsteps = playerSounds[0];
@@ -101,15 +102,16 @@ public class PlayerController3D : MonoBehaviour
         }
         else
         {
-
+            anim.SetBool("Dead", true);
         }
     }
 
     void UpdateAnimation()
     {
-        anim.SetBool("Throwing", Input.GetKeyDown("space"));
+        anim.SetBool("Throwing", Input.GetKeyDown(KeyCode.Space));
         anim.SetBool("Moving", Mathf.Abs(moveDirection.x) > 0.01 || Mathf.Abs(moveDirection.z) > 0.01);
         anim.SetBool("Rolling", dashTimeLeft > 0);
+        anim.SetBool("Dead", false);
     }
 
     void UpdateFaceDir()
@@ -190,6 +192,7 @@ public class PlayerController3D : MonoBehaviour
     public void Die()
     {
         alive = false;
+<<<<<<< HEAD
         anim.SetBool("Moving", false);
         AfterDie();
     }
@@ -202,6 +205,8 @@ public class PlayerController3D : MonoBehaviour
             anim.SetTrigger("Dying");
             alive2 = true;
         }
+=======
+>>>>>>> bc70d9b972af7b0752e986d7f53615a77130b8b1
     }
 
     public void Respawn()
