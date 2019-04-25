@@ -146,7 +146,6 @@ public class CowController3D : MonoBehaviour
                 break;
             case CowState.InvestigateSound:
                 anim.SetBool("Walking", true);
-                anim.SetBool("Alarm", true);
                 if (sourceOfSound == null)
                 {
                     Debug.Log("No sound source");
@@ -199,7 +198,7 @@ public class CowController3D : MonoBehaviour
                     foreach (GameObject cow in allCows)
                     {
                         if (cow != gameObject && cow.GetComponent<CowController3D>().state != CowState.AttackPlayer && cow.GetComponent<CowController3D>().state != CowState.PlayerSeen)
-                            if (cow.GetComponent<CowController3D>().CanSeePlayer())
+                            if (cow.GetComponent<CowController3D>().CanHearSound(transform.position))
                                 cow.GetComponent<CowController3D>().state = CowState.PlayerSeen;
                     }
                 }
@@ -299,7 +298,8 @@ public class CowController3D : MonoBehaviour
         {
             canSeePlayer = hit.collider.CompareTag("Player");
         }
-        return canSeePlayer && Vector3.Distance(transform.position, player.transform.position) <= eyesightDist;
+        //return canSeePlayer && Vector3.Distance(transform.position, player.transform.position) <= eyesightDist;
+        return canSeePlayer;
     }
 
     void CheckPlayerCaught()
