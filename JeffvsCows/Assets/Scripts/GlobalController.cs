@@ -7,10 +7,12 @@ public class GlobalController : MonoBehaviour
 {
     public string nextLevel;
     public Canvas deathUI;
+    public Canvas pauseUI;
     public float playerRespawnTime;
     public GameObject[] cows;
     float playerRespawnTimeLeft;
     public WarningLightController wlc;
+    bool isPaused = false;
 
     private void Start()
     {
@@ -18,10 +20,26 @@ public class GlobalController : MonoBehaviour
         //wlc = GameObject.Find("Warning Light").GetComponent<WarningLightController>();
         if (wlc == null)
             Debug.Log("No warning light found");
+        pauseUI.gameObject.SetActive(false);
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused == false)
+            {
+                Time.timeScale = 0f;
+                isPaused = true;
+                pauseUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                isPaused = false;
+                pauseUI.gameObject.SetActive(false);
+            }
+        }
         if (playerRespawnTimeLeft > 0)
         {
             playerRespawnTimeLeft -= Time.deltaTime;
