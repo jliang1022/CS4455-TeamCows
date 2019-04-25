@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  turnDeg: 180
+  turnDeg: 90
   turnWaitTime: 1
   numOfTurns: 3
   waypoints: []
@@ -1059,8 +1059,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 166239871787052778}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 12
+  m_Radius: 1
+  m_Speed: 15
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 180
@@ -2535,7 +2535,7 @@ Transform:
   m_GameObject: {fileID: 5692215907091695005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.15}
   m_Children: []
   m_Father: {fileID: 166239871787052779}
   m_RootOrder: 1
@@ -2582,6 +2582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64125bb51ff94901afe1e8ed4373e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &7570077663244750562
 GameObject:
   m_ObjectHideFlags: 0

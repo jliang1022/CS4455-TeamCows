@@ -97,7 +97,7 @@ public class CowController3D : MonoBehaviour
             state = CowState.PlayerSeen;
         }
 
-        switch(state)
+        switch (state)
         {
             case CowState.ReturnToDefault:
                 if (SetToDefaultPos())
@@ -254,6 +254,11 @@ public class CowController3D : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, defaultRot, Time.deltaTime * rotateSpeed);
             }
         return Vector3.Distance(transform.position, defaultPos) < 1f && transform.rotation == defaultRot;
+    }
+
+    public void TeleportCow()
+    {
+        transform.position = defaultPos;
     }
 
     float CalculateStationaryTurnAmount()

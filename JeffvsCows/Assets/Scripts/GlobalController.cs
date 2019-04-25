@@ -10,13 +10,14 @@ public class GlobalController : MonoBehaviour
     public Canvas pauseUI;
     public float playerRespawnTime;
     public GameObject[] cows;
+    public GameObject[] balls;
     float playerRespawnTimeLeft;
     public WarningLightController wlc;
     bool isPaused = false;
 
     private void Start()
     {
-        RevivePlayer();
+        SetPlayerStart();
         //wlc = GameObject.Find("Warning Light").GetComponent<WarningLightController>();
         if (wlc == null)
             Debug.Log("No warning light found");
@@ -85,6 +86,20 @@ public class GlobalController : MonoBehaviour
     }
 
     public void RevivePlayer()
+    {
+        deathUI.gameObject.SetActive(false);
+        foreach (GameObject cow in cows)
+        {
+            cow.GetComponent<CowController3D>().TeleportCow();
+        }
+        foreach (GameObject ball in balls)
+        {
+            ball.GetComponent<BallScript>().ReturnBall();
+        }
+        GameObject.Find("Player").GetComponent<PlayerController3D>().Respawn();
+    }
+
+    void SetPlayerStart()
     {
         deathUI.gameObject.SetActive(false);
         GameObject.Find("Player").GetComponent<PlayerController3D>().Respawn();

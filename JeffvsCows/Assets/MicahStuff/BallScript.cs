@@ -9,6 +9,8 @@ public class BallScript : MonoBehaviour
     bool canPickUp, thrown;
     AudioSource sound;
     float colliderOffTime, colliderOffTimeLeft;
+    Vector3 defaultPos;
+    Quaternion defaultRot;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,8 @@ public class BallScript : MonoBehaviour
         canPickUp = true;
         sound = GetComponent<AudioSource>();
         colliderOffTime = 0.5f;
+        defaultPos = transform.position;
+        defaultRot = transform.rotation;
     }
 
     // Update is called once per frame
@@ -33,7 +37,7 @@ public class BallScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && canPickUp)
+        if (other.CompareTag("Player") && canPickUp)
         {
             if (player.transform.childCount < 2)
             {
@@ -56,7 +60,7 @@ public class BallScript : MonoBehaviour
         else if (other.CompareTag("Environment"))
         {
             canPickUp = true;
-            if (thrown)
+            if (thrown && gameObject.CompareTag("Rock"))
             {
                 sound.Play();
                 GameObject.Find("GlobalControl").GetComponent<GlobalController>().AlertCows(gameObject);
@@ -73,7 +77,8 @@ public class BallScript : MonoBehaviour
             if (ball.tag == "Key")
             {
                 transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-            } else if (ball.tag == "Rock")
+            }
+            else if (ball.tag == "Rock")
             {
                 ball.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f);
             }
@@ -84,5 +89,25 @@ public class BallScript : MonoBehaviour
             ball.GetComponent<Collider>().enabled = false;
             ball.AddForce(transform.forward * 700);
         }
+    }
+
+    public void ReturnBall()
+    {
+        gameObject.SetActive(true);
+        ball.GetComponent<Collider>().enabled = true;
+        if (ball.tag == "Key")
+        {
+            transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+        else if (ball.tag == "Rock")
+        {
+            ball.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f);
+        }
+        ball.useGravity = true;
+        ball.isKinematic = false;
+        ball.transform.parent = null;
+        ball.transform.position = defaultPos;
+        ball.transform.rotation = defaultRot;
+        Debug.Log(defaultPos);
     }
 }

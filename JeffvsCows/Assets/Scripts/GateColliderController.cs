@@ -26,7 +26,7 @@ public class GateColliderController : MonoBehaviour
                 {
                     openGate = true;
                     child.transform.parent = null;
-                    Destroy(child.gameObject);
+                    child.gameObject.SetActive(false);
                     GetComponent<Collider>().enabled = false;
                     gateOpoenAudio.Play();
                 }
