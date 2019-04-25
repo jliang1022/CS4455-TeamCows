@@ -91,6 +91,7 @@ public class GlobalController : MonoBehaviour
         foreach (GameObject cow in cows)
         {
             cow.GetComponent<CowController3D>().TeleportCow();
+            cow.GetComponent<CowController3D>().state = CowController3D.CowState.Idle;
         }
         foreach (GameObject ball in balls)
         {

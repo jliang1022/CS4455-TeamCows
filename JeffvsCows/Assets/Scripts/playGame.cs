@@ -7,6 +7,6 @@ public class playGame : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Level 1_1");
+        SceneManager.LoadScene("Level 1_2");
     }
 }
