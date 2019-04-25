@@ -3530,7 +3530,7 @@ MonoBehaviour:
   moveSpeed: 8
   turnSpeed: 12
   gravityScale: 1
-  dashTime: 1
+  dashTime: 0.5
   dashSpeed: 15
   moveDirection: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}

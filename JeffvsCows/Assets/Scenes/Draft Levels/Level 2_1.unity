@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1042,6 +1042,10 @@ PrefabInstance:
     - target: {fileID: 1675174567, guid: c147981eed7944e109e6d25755f32437, type: 3}
       propertyPath: m_Name
       value: Wall LightStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675174567, guid: c147981eed7944e109e6d25755f32437, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1675174570, guid: c147981eed7944e109e6d25755f32437, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2716,6 +2720,10 @@ PrefabInstance:
     - target: {fileID: 1675174567, guid: c147981eed7944e109e6d25755f32437, type: 3}
       propertyPath: m_Name
       value: Wall LightStick (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675174567, guid: c147981eed7944e109e6d25755f32437, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1675174570, guid: c147981eed7944e109e6d25755f32437, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5501,6 +5509,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warning Light
       objectReference: {fileID: 0}
+    - target: {fileID: 2180736146704835383, guid: add8d1d116bce4f218e661d057bd444a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2180736146704835386, guid: add8d1d116bce4f218e661d057bd444a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6162,6 +6175,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029322750395771544, guid: 28925a972f7784dcd8bf819ac9eea19f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3029322750395771543, guid: 28925a972f7784dcd8bf819ac9eea19f,
         type: 3}
